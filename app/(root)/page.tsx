@@ -3,8 +3,9 @@ import TotalBalanceBox from '@/components/TotalBalanceBox'
 import React from 'react'
 import RightSidebar from '@/components/RightSidebar'
 import { LockKeyhole, LogIn } from 'lucide-react'
-const Home = () => {
-  const loggedIn = {firstName: 'Hesara', lastName:'Perera', email: 'contact@hesara.perera'};
+import { getLoggedInUser } from '@/lib/actions/user.actions'
+const Home = async() => {
+  const loggedIn = await getLoggedInUser();
   return (
     <section className='home'>
       <div className='home-content'>
@@ -12,7 +13,7 @@ const Home = () => {
           <HeaderBox 
             type='greeting'
             title='Welcome'
-            user={loggedIn?.firstName || 'Guest'}
+            user={loggedIn?.name || 'Guest'}
             subtext = 'Access and manage your account and transactions efficently'
           />
 
